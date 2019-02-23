@@ -13,10 +13,10 @@
 # or otherwise) arising in any way out of the use of this software, 
 # even if advised of the possibility of such damage.
 #
-#   File: lwsMgExamplesRapid.pro
+#   File: lwsMedusaExamplesRapid.pro
 #
 # Author: $author$
-#   Date: 1/5/2014
+#   Date: 6/19/2014
 ########################################################################
 PKG = ../../../../..
 BLD = ../..
@@ -32,23 +32,17 @@ libWebsockets_SRC = $${libWebsockets_PKG}/lib
 libWebsockets_BLD = ../$${libWebsockets_PKG}/build/macosx/QtCreator/Debug
 libWebsockets_LIB = $${libWebsockets_BLD}/lib/libwebsockets
 
-Mongoose_PKG = $${PKG}/../thirdparty/mongoose/mongoose
-Mongoose_SRC = $${Mongoose_PKG}
-Mongoose_BLD = ../$${Mongoose_PKG}/build/macosx/QtCreator/Debug
-Mongoose_LIB = $${Mongoose_BLD}/lib/libmongoose
-
 XOS_PKG = $${PKG}/../xos
 XOS_SRC = $${XOS_PKG}/src
 XOS_BLD = ../$${XOS_PKG}/build/macosx/QtCreator/Debug
 XOS_LIB = $${XOS_BLD}/lib
 XosCore_LIB = $${XOS_LIB}/libXosCore
 
-TARGET = lwsMgExamplesRapid
+TARGET = lwsMedusaExamplesRapid
 
 INCLUDEPATH += \
 $${SRC} \
 $${XOS_SRC} \
-$${Mongoose_SRC} \
 $${libWebsockets_SRC} \
 $${libJson_SRC} \
 
@@ -70,21 +64,19 @@ $${SRC}/examples/clock/server/implement/Processors.cpp \
 $${SRC}/examples/server/Callback.cpp \
 
 ########################################################################
-
 HEADERS += \
-$${SRC}/RestApp.hpp \
+$${SRC}/examples/server/libwebsockets/medusa/Daemon.hpp \
+$${SRC}/server/libwebsockets/medusa/Daemon.hpp \
 $${SRC}/server/libwebsockets/Daemon.hpp \
-$${SRC}/server/libwebsockets/mongoose/Daemon.hpp \
-$${SRC}/examples/server/libwebsockets/mongoose/Daemon.hpp \
+$${SRC}/RestApp.hpp \
 
 SOURCES += \
+$${SRC}/examples/server/libwebsockets/medusa/Daemon.cpp \
+$${SRC}/examples/server/libwebsockets/medusa/Daemon_instance.cpp \
 $${SRC}/RestApp.cpp \
 $${SRC}/libjson/Json.cpp \
-$${SRC}/examples/server/libwebsockets/mongoose/Daemon.cpp \
-$${SRC}/examples/server/libwebsockets/mongoose/Daemon_instance.cpp \
 
 ########################################################################
-
 HEADERS += \
 $${XOS_SRC}/xos/inet/http/Form.hpp \
 $${XOS_SRC}/xos/inet/http/UrlEncodedReader.hpp \
@@ -92,9 +84,6 @@ $${XOS_SRC}/xos/inet/http/FormReader.hpp \
 $${XOS_SRC}/xos/inet/http/Request.hpp \
 $${XOS_SRC}/xos/inet/http/Response.hpp \
 $${XOS_SRC}/xos/inet/http/server/Processor.hpp \
-$${XOS_SRC}/xos/inet/http/server/mongoose/Daemon.hpp \
-$${XOS_SRC}/xos/inet/http/server/libwebsockets/Daemon.hpp \
-$${XOS_SRC}/xos/inet/http/server/libwebsockets/mongoose/Daemon.hpp \
 
 SOURCES += \
 $${XOS_SRC}/xos/inet/http/Form.cpp \
@@ -102,13 +91,13 @@ $${XOS_SRC}/xos/inet/http/UrlEncodedReader.cpp \
 $${XOS_SRC}/xos/inet/http/FormReader.cpp \
 $${XOS_SRC}/xos/inet/http/Request.cpp \
 $${XOS_SRC}/xos/inet/http/Response.cpp \
+$${XOS_SRC}/xos/inet/http/Mime.cpp \
+$${XOS_SRC}/xos/inet/http/server/medusa/method/GetProcessor.cpp \
 $${XOS_SRC}/xos/os/Main_main.cpp \
 
 LIBS += \
 -L$${XosCore_LIB} \
 -lXosCore \
--L$${Mongoose_LIB} \
--lmongoose \
 -L$${libWebsockets_LIB} \
 -lwebsockets \
 -L$${libJson_LIB} \
