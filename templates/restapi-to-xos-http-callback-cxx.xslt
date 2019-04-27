@@ -14,7 +14,7 @@
 <!-- or otherwise) arising in any way out of the use of this software,      -->
 <!-- even if advised of the possibility of such damage.                     -->
 <!--                                                                        -->
-<!--   File: restapi-application-to-xos-http-callback.xslt                  -->
+<!--   File: restapi-to-xos-http-callback-cxx.xslt                          -->
 <!--                                                                        -->
 <!-- Author: $author$                                                       -->
 <!--   Date: 1/8/2014                                                       -->
@@ -36,12 +36,12 @@
 <!--========================================================================-->
 <!-- Includes                                                               -->
 <!--========================================================================-->
-<xsl:include href="../restapi-standard-parameters.xslt"/>
-<xsl:include href="../restapi-standard-templates.xslt"/>
-<xsl:include href="../restapi-to-cxx-standard-parameters.xslt"/>
-<xsl:include href="../restapi-to-cxx-standard-templates.xslt"/>
-<xsl:include href="../restapi-to-xos-cxx-standard-parameters.xslt"/>
-<xsl:include href="../restapi-to-xos-cxx-standard-templates.xslt"/>
+<xsl:include href="../../restapi-standard-parameters.xslt"/>
+<xsl:include href="../../restapi-standard-templates.xslt"/>
+<xsl:include href="../../restapi-to-cxx-standard-parameters.xslt"/>
+<xsl:include href="../../restapi-to-cxx-standard-templates.xslt"/>
+<xsl:include href="../../restapi-to-xos-cxx-standard-parameters.xslt"/>
+<xsl:include href="../../restapi-to-xos-cxx-standard-templates.xslt"/>
 
 <!--========================================================================-->
 <!-- Parameters                                                             -->

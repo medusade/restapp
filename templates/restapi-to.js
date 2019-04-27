@@ -38,22 +38,48 @@ function getHttpFormParameter(name) {
 getFormValueAlert = true;
 setFormActionAlert = true;
 
+function getFormChecked(name, form) {
+    if (!form) {
+        form = 'form';
+    }
+    if (name) {
+        if ((document[form][name].checked)) {
+            if ((value = document[form][name].value)) {
+                return value;
+            }
+        } else {
+            len = document[form][name].length;
+            if (0 < len) {
+                for (i = 0; i < len; i++) {
+                    if (document[form][name][i].checked) {
+                        if ((value = document[form][name][i].value)) {
+                            return value;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return '';
+}
 function getFormValue(name, form) {
     if (!form)
         form = 'form';
 
-    if (name)
-    if ((value = document[form][name].value)) {
-        if (getFormValueAlert)
-        alert(name + " = " + value);
-        return value;
-    } else {
-        len = document[form][name].length;
-        if (0 < len) {
-            for (i = 0; i < len; i++) {
-                if (document[form][name][i].checked) {
-                    if ((value = document[form][name][i].value)) {
-                        return value;
+    if (name) {
+        if ((value = document[form][name].value)) {
+            if (getFormValueAlert) {
+                alert(name + " = " + value);
+            }
+            return value;
+        } else {
+            len = document[form][name].length;
+            if (0 < len) {
+                for (i = 0; i < len; i++) {
+                    if (document[form][name][i].checked) {
+                        if ((value = document[form][name][i].value)) {
+                            return value;
+                        }
                     }
                 }
             }
@@ -147,7 +173,20 @@ function onToSubmit(on_form, before_action) {
     return true;
 }
 function toActionPrefix() {
-    return getFormValue('application').toLowerCase()+'/'+getFormValue('section').toLowerCase()+'/';
+    //return getFormValue('application').toLowerCase()+'/'+getFormValue('section').toLowerCase()+'/';
+    if (("no" != getFormChecked('use_application')) && ("no" != getFormChecked('use_section'))) {
+        return getFormValue('application')+'/'+getFormValue('section')+'/';
+    } else {
+        if (("no" != getFormChecked('use_application'))) {
+            return getFormValue('application')+'/';
+        } else {
+            if (("no" != getFormChecked('use_section'))) {
+                return getFormValue('section')+'/';
+            } else {
+            }
+        }
+    }
+    return getFormValue('application')+'-'+getFormValue('section')+'-';
 }
 function toInclude() {
     return getFormValue('application').toLowerCase()+'/'+getFormValue('section').toLowerCase();
